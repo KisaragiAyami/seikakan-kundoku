@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../fonts.css">
+  <script src="../js/kanbun.js"></script>
+  <script src="../js/jchanzi.js" defer></script>
+  <title>程寤</title>
+</head>
+
+<body>
+  <main>
+    <h1><ruby>清華大学蔵戦国竹簡<rt>せいかだいがくぞうせんこくちくかん</rt></ruby>　漢文訓読版</h1>
+    <h2><ruby>程寤<rt>ていご</rt></ruby></h2>
+    <hr/>
+    <h3>簡文</h3>
+      <div>隹王元祀貞月旣生@ebag_s074-003:〓@大姒夢見商廷隹棶廼𮱡⚌@発:〓@取周廷杍梪于氒𨳿@ebag_s040-554:〓@⚌松柏棫柞【一】</div>
+      <div>@ebag_s061-075:〓@敬告王⚌弗敢占@ebag_s149-043:〓@大子發卑霝名@ebag_s140-015:〓@𢼆祝𢗹𢼆王𠳄𰳭𢼆大姒宗丁𢼆大子發敝告【二】</div>
+      <div>宗方𡉣禝𢗹于六末山川攻于商神@ebag_s147-010:〓@氶占于明堂王及大子發並拜吉夢受商命【三】</div>
+      <div>于皇𱜦⚌興曰發女敬聖吉夢朋棶@ebag_s062-112:〓@杍⚌松⚌柏副棫㯱柞⚌@ebag_s040-554:〓@⚌雘於𰲛可敬非朋可戒非【四】</div>
+      <div>商可甬非梪⚌因欲不違𦬁女天𰙳疾旨味旣甬不可藥𠱾不遠隹商慼才周⚌慼才商【五】</div>
+      <div>睪用周果拜不忍妥用多福隹杍敝不義@ebag_s162-065:〓@于商卑行量亡乏明⚌才向隹容內棶意【七】</div>
+      <div>欲隹柏夢徒庶言@u2ffa-u8fb6-u2ff1-u5927-u535c:〓@引又勿亡@ebag_s115-015:〓@⚊明武𥚸女棫柞亡堇於𰲛敬才朕𦖞周長不弍@ebag_s029-078:〓@【六】</div>
+      <div>亡勿甬不𢗏思卑䐓和川眚民不𦬁褱允於𰲛可監非旹可@ebag_s029-078:〓@非和可𥚸非彣可【八】</div>
+      <div>保非道可㤅非身可力非人⚌𢘓疆不可以@ebag_s040-101:〓@𨒥⚌戒（⚌）人甬女母㤅日不𧿞∟【九】</div>
+
+    <h3>訓読文</h3>
+    <div class="kanbun split-touching-kana furigana-center-align" id="insi-kundokubun">
+      <p></p>
+    </div>
+
+    <h3>書き下し文</h3>
+    <p></p>
+
+    <h3>現代語訳</h3>
+    <p></p>
+
+      <script src="../js/jchanzi-helper.js"></script>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          // 1. Convert all kanbun containers
+          document.querySelectorAll('.kanbun').forEach(function (div) {
+            convertKanbunDiv(div);
+            if (window.jchanzi) {
+              jchanzi.processElement(div);
+            }
+          });
+
+          // 2. Apply custom fonts (your existing font script)
+          document.querySelectorAll('[data-font]').forEach(function (el) {
+            el.style.fontFamily = "'" + el.dataset.font + "', serif";
+          });
+        });
+      </script>
+
+  </main>
+  <script src="../nav-data.js"></script>
+  <script src="../js/nav.js"></script>
+  <script src="../js/font-marker.js"></script>
+  <script src="../js/tooltips.js"></script>
+</body>
+
+
+<script>
+  document.querySelectorAll('[data-font]').forEach(el => {
+    el.style.fontFamily = `'${el.dataset.font}', serif`;
+    console.log('Applied font to:', el, 'fontFamily:', el.style.fontFamily);
+  });
+</script>
+
+</html>

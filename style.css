@@ -1,0 +1,419 @@
+/* Scales up all text */
+html { font-size: 125%; }
+
+/* ─── IDS renderer – scaled components ────────────────── */
+
+.ids-root {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    line-height: 1;
+    font-size: inherit;      /* root takes the parent's font size */
+    font-family: inherit;
+}
+
+.ids-leaf {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1;
+    font-family: inherit;
+    /* font-size is set via inline style */
+}
+
+/* binary & ternary containers */
+.ids-hbox,
+.ids-vbox,
+.ids-hbox3,
+.ids-vbox3 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    line-height: 1;
+    font-size: inherit;      /* keep container size, children scale internally */
+    font-family: inherit;
+}
+.ids-hbox > *,
+.ids-hbox3 > * {
+    flex: 1 1 0;
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* font-size set on the child spans via inline style */
+}
+.ids-vbox > *,
+.ids-vbox3 > * {
+    flex: 1 1 0;
+    min-height: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.ids-hbox  { flex-direction: row; }
+.ids-vbox  { flex-direction: column; }
+.ids-hbox3 { flex-direction: row; }
+.ids-vbox3 { flex-direction: column; }
+
+/* ── grid for surround operators ── */
+.ids-grid {
+    display: inline-grid;
+    vertical-align: middle;
+    line-height: 1;
+    font-size: inherit;      /* grid size = 1em of parent */
+    font-family: inherit;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 1em;
+    height: 1em;
+    aspect-ratio: 1/1;
+}
+.ids-grid .cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: inherit;      /* cell inherits grid’s font-size */
+    line-height: 1;
+    overflow: hidden;
+}
+.ids-grid .cell.outer {
+    border: 1.5px solid #b8a08e;
+    background: #f8f5f0;
+    border-radius: 2px;
+    z-index: 1;
+}
+.ids-grid .cell.inner {
+    z-index: 2;
+    background: transparent;
+    /* inner component gets its own font-size via inline style */
+}
+/* grid positions */
+.ids-grid .pos-tl { grid-column: 1; grid-row: 1; }
+.ids-grid .pos-tm { grid-column: 2; grid-row: 1; }
+.ids-grid .pos-tr { grid-column: 3; grid-row: 1; }
+.ids-grid .pos-ml { grid-column: 1; grid-row: 2; }
+.ids-grid .pos-mm { grid-column: 2; grid-row: 2; }
+.ids-grid .pos-mr { grid-column: 3; grid-row: 2; }
+.ids-grid .pos-bl { grid-column: 1; grid-row: 3; }
+.ids-grid .pos-bm { grid-column: 2; grid-row: 3; }
+.ids-grid .pos-br { grid-column: 3; grid-row: 3; }
+
+/* ── overlap ── */
+.ids-overlap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    line-height: 1;
+    font-size: inherit;
+    font-family: inherit;
+    position: relative;
+    width: 1em;
+    height: 1em;
+}
+.ids-overlap > * {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    /* font-size set via inline style */
+}
+.ids-overlap > :first-child {
+    z-index: 1;
+    opacity: 0.7;
+    transform: translate(-4%, -4%);
+}
+.ids-overlap > :last-child {
+    z-index: 2;
+}
+
+/* fallback messages */
+.ids-placeholder {
+    color: #b8a89a;
+}
+.ids-error {
+    color: #b34a4a;
+}
+
+/*usual css*/
+body {
+    margin: 0;
+    padding: 1rem;
+    font-family: serif;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    line-height: 1.2;
+    background: #f8f3ec;
+    color: #222;
+    font-family: 'HanaMinA', 'HanaMinB', 'Hanazono Mincho', serif
+}
+
+main {
+    height: 90vh;
+    max-width: 36rem;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+
+p {
+    text-indent: 2em;
+    margin-bottom: 1rem;
+}
+
+p.end-aligned {
+  text-align: end;
+  padding-inline-end: 2em;
+}
+
+hr {
+    margin: 1rem 0;
+}
+
+ruby {
+    ruby-position: over;
+    ruby-align: space-around;
+}
+
+rt {
+  font-size: 0.5em;
+}
+
+[class*="kunten"],
+.unit,
+.kanji {
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+
+[data-font] {
+    margin: 0;
+    padding: 0;
+    /* background: rgba(255,0,0,0.15); */
+    /* border: 1px dashed red; */
+}
+
+[data-font] {
+  font-size: inherit;          /* same size as parent */
+  line-height: inherit;        /* same line spacing */
+  display: inline;             /* no block‑level surprises */
+  vertical-align: baseline;    /* align with the parent’s baseline (works in vertical) */
+}
+
+
+.kanbun p {letter-spacing: 0; word-spacing: 0;}
+
+.punctuation.dash {
+  display: inline-block;
+  text-orientation: sideways;   /* Not needed if we rotate */
+  transform: rotate(90deg);
+}
+
+/* .unit { background: rgba(255,0,0,0.1); } */
+
+.unit {
+  display: ruby;
+}
+.unit > .kanji,
+.unit > rb {
+  display: ruby-base;
+}
+
+.kanbun a img {
+  width: 1em !important;    /* already set by script, but ensure */
+  height: auto !important;
+  vertical-align: middle;   /* or baseline, experiment */
+}
+
+/* ============================================================
+   Kanbun annotation size & position adjustments
+   (no grid‑placement or container‑layout styles)
+   ============================================================ */
+
+/* ---- common annotation sizing ---- */
+.kanbun rt,
+.kanbun sup,
+.kanbun sub {
+    font-size: 50%;
+    font-weight: 545;
+    line-height: 100%;
+}
+
+.kanbun sub,
+.kanbun sup {
+    position: initial;          /* reset global sub/sup positioning */
+}
+.kanbun sub {
+    vertical-align: sub;
+}
+.kanbun sup {
+    vertical-align: super;
+}
+
+.kanbun .kaeriten sub,
+.kanbun .saidoku sub {
+    position: relative;
+    left: -0.3em;          /* ← negative = left (physical) */
+}
+
+.kanbun .okurigana sup {
+    position: relative;
+    left: -0.3em;          /* ← negative = left (physical) */
+}
+
+/* Alignment inside the unit – works with any grid / flex parent */
+.kanbun .has-okurigana .furigana {
+    justify-self: end;
+}
+.kanbun.betagumi:not(.furigana-center-align) .unit:not(.has-multiple-kanji) .furigana {
+    justify-self: start;
+}
+
+/* Furigana inside multiple‑kanji groups */
+.kanbun .has-multiple-kanji .furigana {
+    height: auto;
+    justify-self: stretch;
+    text-justify: distribute;
+    text-align: justify;
+    text-align-last: justify;
+}
+
+/* Gap when furigana touches the next unit’s kana */
+.kanbun.betagumi.split-touching-kana .next-unit-has-furigana:not(.has-okurigana):not(.has-multiple-kanji.has-less-than-3-furigana):not(.has-only-1-furigana) .furigana {
+    margin-bottom: .5em;
+}
+
+/* ---- OKURIGANA ---- */
+.kanbun .okurigana {
+    white-space: nowrap;
+    height: max-content;
+}
+
+/* Sinking okurigana (shift down when no furigana) */
+.kanbun.okurigana-sinking .unit:not(.has-furigana) .okurigana {
+    margin-top: .25em;
+    margin-bottom: -.25em;
+}
+.kanbun.betagumi.okurigana-sinking .next-unit-has-furigana:not(.has-furigana) .okurigana {
+    margin-bottom: 0;
+}
+
+/* Touching‑kana adjustments */
+.kanbun.betagumi.split-touching-kana .next-unit-has-furigana .okurigana,
+.kanbun.betagumi.okurigana-sinking.split-touching-kana .next-unit-has-furigana:not(.has-furigana) .okurigana {
+    margin-bottom: .25em;
+}
+
+/* ---- PUNCTUATION ---- */
+.kanbun .punctuation ~ .punctuation {
+    margin-top: .5em;
+}
+.kanbun:not(.betagumi) .punctuation ~ .right-corner-bracket {
+    margin-top: .375em;
+}
+
+/* ---- KAERITEN ---- */
+.kanbun .kaeriten {
+    white-space: nowrap;
+    height: max-content;
+    align-self: end;            /* push to the bottom of its cell / line */
+}
+/* Stacking of multiple kaeriten sub‑elements */
+.kanbun .kaeriten sub:not(:first-of-type),
+.kanbun.betagumi .kaeriten .ichiten:first-of-type:not(:last-of-type) {
+    margin-top: -.3em;
+}
+.kanbun .kaeriten .ichiten + sub {
+    margin-top: -.7em;
+}
+
+/* ---- SAIDOKU (saidokumoji) ---- */
+.kanbun .saidoku {
+    white-space: nowrap;
+    height: max-content;
+}
+.kanbun .saidoku:not(.has-furigana) {
+    padding-top: .5em;
+}
+/* Centring the furigana part of saidoku when no okurigana */
+.kanbun:not(.betagumi) .saidoku:not(.has-okurigana) .saidoku-furigana,
+.kanbun.betagumi.furigana-center-align .saidoku:not(.has-okurigana) .saidoku-furigana {
+    display: inline-block;
+    min-height: 2em;
+    text-align: center;
+}
+
+/* ---- DASH (たて点) ---- */
+.kanbun .dash {
+    position: relative;
+    color: transparent;
+}
+.kanbun .dash:after {
+    content: "";
+    background: #000;
+    width: .03em;
+    position: absolute;
+    left: 0.4em;
+    top: .05em;
+    height: .4em;
+}
+.kanbun.betagumi .dash {
+    font-size: 50%;
+}
+.kanbun.betagumi .dash:after {
+    left: 1em;
+}
+
+.kanbun .unit .dash {
+    display: inline-block;
+    width: 1em;
+    position: absolute;
+}
+
+.kanbun .punctuation.dash {
+    transform: none;   /* no rotation, we use the :after pseudo‑element */
+}
+/* ---- Prevent line‑height gaps inside annotations ---- */
+.kanbun .kunten:not(.punctuation) {
+    line-height: 0;
+}
+
+.kanbun .unit {
+    white-space: nowrap;
+}
+
+/* Tooltips */
+/* Tooltip container */
+.tooltip-trigger {
+  position: relative;      /* still useful for absolute‑positioned JS tooltip */
+  color: #8b5e3c;
+  border-left: 1px dotted #8b5e3c;
+  padding-left: 0.15em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tooltip-trigger:hover {
+  color: #b45f2a;
+  border-left: 1px solid #b45f2a;
+}
