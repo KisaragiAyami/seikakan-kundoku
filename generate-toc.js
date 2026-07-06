@@ -73,5 +73,14 @@ const page = `<!DOCTYPE html>
 </body>
 </html>`;
 
+const baseUrl = 'https://YourUsername.github.io/repo-name';  // change to your real URL
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>${baseUrl}/</loc></url>
+${files.map(file => `  <url><loc>${baseUrl}/pages/${file}</loc></url>`).join('\n')}
+</urlset>`;
+fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), sitemap);
+console.log('sitemap.xml generated.');
+
 fs.writeFileSync(outputFile, page);
 console.log(`TOC generated: ${files.length} pages listed.`);
