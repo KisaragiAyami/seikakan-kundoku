@@ -417,3 +417,9 @@ rt {
   color: #b45f2a;
   border-left: 1px solid #b45f2a;
 }
+
+rt, ruby rt, .kanbun rt, .furigana {
+  display: ruby-text !important;   /* the correct display for <rt> */
+  visibility: visible !important;
+  opacity: 1 !important;
+}
