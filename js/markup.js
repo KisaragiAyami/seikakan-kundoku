@@ -38,6 +38,8 @@
     function processTextNode(node) {
         let text = node.nodeValue;
 
+        text = text.replace(/：/g, '\uFE13');
+
         // a) Links
         text = processLinks(text);
         // b) Ruby (now using [kanji],kana,)

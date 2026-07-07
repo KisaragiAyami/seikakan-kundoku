@@ -159,7 +159,7 @@ main {
 }
 
 h1 {
-    font-size: 2.2rem;
+    font-size: 2.0rem;
     margin-bottom: 1rem;
 }
 
@@ -169,7 +169,22 @@ h2 {
 }
 
 h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+}
+
+h4 {
     font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+h5 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+h6 {
+    font-size: 1.0rem;
     margin-bottom: 0.5rem;
 }
 
@@ -177,6 +192,12 @@ h3 {
 p {
     text-indent: 2em;
     margin-bottom: 1rem;
+}
+
+p.explanation {
+  text-indent: 0;
+  margin-top: 3em;
+  margin-bottom: 4em;
 }
 
 p.end-aligned {
@@ -401,11 +422,62 @@ rt {
     white-space: nowrap;
 }
 
+/* Blockquote – long citations */
+blockquote {
+  margin: 2em 0;                      /* vertical spacing (block axis) */
+  padding: 0.3em 0.3em;
+  border-top: 4px solid #c0b090;
+  background: #faf7f0;
+  line-height: 1.0;
+  text-indent: 2rem; 
+}
+
+/* Inline quote – uses 「」 marks */
+q {
+  quotes: "「" "」";
+  font-style: normal;                 /* no italic – keep it upright */
+  color: #5e4b3c;                     /* slightly darker for emphasis */
+}
+
+q:before {
+  content: open-quote;
+}
+
+q:after {
+  content: close-quote;
+}
+
+/* ===== VERTICAL TABLES (default) ===== */
+table {
+  writing-mode: vertical-rl;           /* text flows top → bottom */
+  border-collapse: collapse;
+  margin: 2em auto;                    /* centre the table in the column */
+  background: #fffef9;
+  border: 1px solid #c0b090;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.05);
+}
+
+/* Cells – centre content horizontally AND vertically */
+th, td {
+  padding: 8px 12px;
+  border: 1px solid #d5ccbc;
+  line-height: 1.8;                   /* comfortable line spacing */
+  vertical-align: middle;             /* horizontal centring (block axis) */
+  text-align: center;                 /* vertical centring (inline axis) */
+}
+
+/* Header cells – subtle background */
+th {
+  background: #f1ebe0;
+  font-weight: 600;
+  color: #5e4b3c;
+}
+
 /* Tooltips */
 /* Tooltip container */
 .tooltip-trigger {
   color: #8b5e3c;
-  border-bottom: 1px dotted #8b5e3c;
+  border-left: 1px dotted #8b5e3c;
   cursor: pointer;
   text-decoration: none;
   transition: color 0.2s, border-color 0.2s;
@@ -413,17 +485,15 @@ rt {
 }
 .tooltip-trigger:hover {
   color: #b45f2a;
-  border-bottom: 1px solid #b45f2a;
+  border-left: 1px solid #b45f2a;
 }
 /* Tooltip link styling */
 .dynamic-tooltip a {
   color: #1a0dab;          /* typical browser blue */
-  text-decoration: underline;
   cursor: pointer;
 }
 .dynamic-tooltip a:hover {
   color: #b45f2a;
-  text-decoration: underline;
 }
 
 .dynamic-tooltip {
@@ -443,4 +513,12 @@ rt {
 /* Fix for possible baseline shift in vertical mode */
 .tooltip-trigger {
     vertical-align: baseline;
+}
+
+.dynamic-tooltip a,
+.tooltip-trigger a,
+a {
+  text-decoration: underline;
+  text-underline-position: left;
+  text-underline-offset: 0em;
 }
