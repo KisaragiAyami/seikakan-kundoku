@@ -519,6 +519,6 @@ th {
 .tooltip-trigger a,
 a {
   text-decoration: underline;
-  text-underline-position: left;
+  text-underline-position: left !important;
   text-underline-offset: 0em;
 }
