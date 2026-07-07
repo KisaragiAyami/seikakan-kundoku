@@ -60,6 +60,11 @@
 }
 
 @font-face {
+  font-family: 'ebag_s062-024';
+  src: url('fonts/ebag_s062-024.ttf') format('truetype');
+}
+
+@font-face {
   font-family: 'ebag_s062-059';
   src: url('fonts/ebag_s062-059.ttf') format('truetype');
 }

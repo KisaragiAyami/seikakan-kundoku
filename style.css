@@ -404,22 +404,43 @@ rt {
 /* Tooltips */
 /* Tooltip container */
 .tooltip-trigger {
-  position: relative;      /* still useful for absolute‑positioned JS tooltip */
   color: #8b5e3c;
-  border-left: 1px dotted #8b5e3c;
-  padding-left: 0.15em;
+  border-bottom: 1px dotted #8b5e3c;
   cursor: pointer;
   text-decoration: none;
   transition: color 0.2s, border-color 0.2s;
+  vertical-align: baseline;          /* already there, but keep it */
 }
-
 .tooltip-trigger:hover {
   color: #b45f2a;
-  border-left: 1px solid #b45f2a;
+  border-bottom: 1px solid #b45f2a;
+}
+/* Tooltip link styling */
+.dynamic-tooltip a {
+  color: #1a0dab;          /* typical browser blue */
+  text-decoration: underline;
+  cursor: pointer;
+}
+.dynamic-tooltip a:hover {
+  color: #b45f2a;
+  text-decoration: underline;
 }
 
-rt, ruby rt, .kanbun rt, .furigana {
-  display: ruby-text !important;   /* the correct display for <rt> */
-  visibility: visible !important;
-  opacity: 1 !important;
+.dynamic-tooltip {
+  pointer-events: auto !important;
+}
+
+/* Ensure ruby inside tooltip triggers follows vertical layout */
+.tooltip-trigger ruby {
+    ruby-position: over !important;
+    display: ruby;
+}
+
+.tooltip-trigger rt {
+    display: ruby-text;
+}
+
+/* Fix for possible baseline shift in vertical mode */
+.tooltip-trigger {
+    vertical-align: baseline;
 }

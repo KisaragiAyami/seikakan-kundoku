@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     color: #222;
     max-width: 250px;
     white-space: normal;
+    pointer-events: auto;
   `;
   document.body.appendChild(tooltip);
 
